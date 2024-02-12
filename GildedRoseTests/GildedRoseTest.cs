@@ -9,9 +9,21 @@ public class GildedRoseTest
     [Test]
     public void Foo()
     {
-        var items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 0 } };
+        var items = new List<Item> {new Item(name: "foo", sellIn: 0, quality: 0)};
         var app = new GildedRose(items);
         app.UpdateQuality();
         Assert.That(items[0].Name, Is.EqualTo("foo"));
+    }
+
+    [Test]
+    public void quality_and_sell_in_of_a_normal_item_decrease_when_a_day_passes()
+    {
+        var item = new Item("random item", 1, 1);
+        var inventory = new GildedRose(new List<Item> { item });
+
+        inventory.UpdateQuality();
+
+        Assert.That(item.SellIn, Is.EqualTo(0));
+        Assert.That(item.Quality, Is.EqualTo(0));
     }
 }
