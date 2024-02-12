@@ -26,4 +26,16 @@ public class GildedRoseTest
         Assert.That(item.SellIn, Is.EqualTo(0));
         Assert.That(item.Quality, Is.EqualTo(0));
     }
+
+    [Test]
+    public void quality_decreases_twice_as_fast_once_sell_by_date_has_passed()
+    {
+        var item = new Item("another random item", 0, 2);
+        var inventory = new GildedRose(new List<Item> { item });
+
+        inventory.UpdateQuality();
+
+        Assert.That(item.SellIn, Is.EqualTo(-1));
+        Assert.That(item.Quality, Is.EqualTo(0));
+    }
 }
