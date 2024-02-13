@@ -50,4 +50,28 @@ public class GildedRoseTest
         Assert.That(item.SellIn, Is.EqualTo(0));
         Assert.That(item.Quality, Is.EqualTo(0));
     }
+
+    [Test]
+    public void aged_brie_increases_in_quality_as_it_gets_older()
+    {
+        var item = new Item("Aged Brie", 1, 0);
+        var inventory = new GildedRose(new List<Item> { item });
+
+        inventory.UpdateQuality();
+
+        Assert.That(item.SellIn, Is.EqualTo(0));
+        Assert.That(item.Quality, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void sulfuras_never_decreases_sell_in_or_quality()
+    {
+        var item = new Item("Sulfuras, Hand of Ragnaros", 1, 1);
+        var inventory = new GildedRose(new List<Item> { item });
+
+        inventory.UpdateQuality();
+
+        Assert.That(item.SellIn, Is.EqualTo(1));
+        Assert.That(item.Quality, Is.EqualTo(1));
+    }
 }
