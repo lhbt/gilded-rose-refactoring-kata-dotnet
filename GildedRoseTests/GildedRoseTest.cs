@@ -38,4 +38,16 @@ public class GildedRoseTest
         Assert.That(item.SellIn, Is.EqualTo(-1));
         Assert.That(item.Quality, Is.EqualTo(0));
     }
+
+    [Test]
+    public void quality_can_never_be_negative()
+    {
+        var item = new Item("quality 0, danger incoming!", 1, 0);
+        var inventory = new GildedRose(new List<Item> { item });
+
+        inventory.UpdateQuality();
+
+        Assert.That(item.SellIn, Is.EqualTo(0));
+        Assert.That(item.Quality, Is.EqualTo(0));
+    }
 }
