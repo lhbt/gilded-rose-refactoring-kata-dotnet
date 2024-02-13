@@ -75,51 +75,19 @@ public class GildedRoseTest
         Assert.That(item.Quality, Is.EqualTo(1));
     }
 
-    [Test]
-    public void backstage_passes_increase_in_quality_by_1_as_sell_in_value_is_above_10()
+    [TestCase(15, 1, 14, 2)]
+    [TestCase(10, 1, 9, 3)]
+    [TestCase(5, 1, 4, 4)]
+    [TestCase(0, 49, -1, 0)]
+    public void backstage_passes_quality_varies_as_days_pass_based_on_sell_in_value
+        (int startingSellIn, int startingQuality, int expectedUpdatedSellIn, int expectedUpdatedQuality)
     {
-        var item = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 1);
+        var item = new Item("Backstage passes to a TAFKAL80ETC concert", startingSellIn, startingQuality);
         var inventory = new GildedRose(new List<Item> { item });
 
         inventory.UpdateQuality();
 
-        Assert.That(item.SellIn, Is.EqualTo(14));
-        Assert.That(item.Quality, Is.EqualTo(2));
-    }
-
-    [Test]
-    public void backstage_passes_increase_in_quality_by_2_as_sell_in_value_is_10_or_less()
-    {
-        var item = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 1);
-        var inventory = new GildedRose(new List<Item> { item });
-
-        inventory.UpdateQuality();
-
-        Assert.That(item.SellIn, Is.EqualTo(9));
-        Assert.That(item.Quality, Is.EqualTo(3));
-    }
-
-    [Test]
-    public void backstage_passes_increase_in_quality_by_3_as_sell_in_value_is_5_or_less()
-    {
-        var item = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 1);
-        var inventory = new GildedRose(new List<Item> { item });
-
-        inventory.UpdateQuality();
-
-        Assert.That(item.SellIn, Is.EqualTo(4));
-        Assert.That(item.Quality, Is.EqualTo(4));
-    }
-
-    [Test]
-    public void backstage_passes_quality_drops_to_0_after_the_concert_meaning_sell_in_goes_below_0()
-    {
-        var item = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 49);
-        var inventory = new GildedRose(new List<Item> { item });
-
-        inventory.UpdateQuality();
-
-        Assert.That(item.SellIn, Is.EqualTo(-1));
-        Assert.That(item.Quality, Is.EqualTo(0));
+        Assert.That(item.SellIn, Is.EqualTo(expectedUpdatedSellIn));
+        Assert.That(item.Quality, Is.EqualTo(expectedUpdatedQuality));
     }
 }
