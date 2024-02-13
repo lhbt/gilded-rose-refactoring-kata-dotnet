@@ -99,4 +99,15 @@ public class GildedRoseTest
         Assert.That(item.Quality, Is.EqualTo(3));
     }
 
+    [Test]
+    public void backstage_passes_increase_in_quality_by_3_as_sell_in_value_is_5_or_less()
+    {
+        var item = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 1);
+        var inventory = new GildedRose(new List<Item> { item });
+
+        inventory.UpdateQuality();
+
+        Assert.That(item.SellIn, Is.EqualTo(4));
+        Assert.That(item.Quality, Is.EqualTo(4));
+    }
 }
