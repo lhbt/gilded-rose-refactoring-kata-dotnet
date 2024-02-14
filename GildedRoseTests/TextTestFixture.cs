@@ -23,7 +23,7 @@ public static class TextTestFixture
             new Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6)
         };
 
-        var app = new GildedRose(items);
+        var app = new GildedRose.GildedRose(items);
 
         int days = 2;
         if (args.Length > 0)

@@ -3,8 +3,6 @@ using GildedRoseKata;
 
 namespace GildedRose;
 
-
-
 public class GildedRose
 {
     private readonly IList<Item> _items;
@@ -18,15 +16,14 @@ public class GildedRose
     {
         foreach (var item in _items)
         {
+            if (item.Name == "Sulfuras, Hand of Ragnaros") continue;
+
             // normal item path
             if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
             {
                 if (item.Quality > 0)
                 {
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
-                    {
                         item.Quality = item.Quality - 1;
-                    }
                 }
             }
             else
@@ -56,11 +53,7 @@ public class GildedRose
                 }
             }
 
-            // all items but sulfuras decrease sell in
-            if (item.Name != "Sulfuras, Hand of Ragnaros")
-            {
-                item.SellIn = item.SellIn - 1;
-            }
+            item.SellIn = item.SellIn - 1;
 
             if (item.SellIn < 0)
             {
