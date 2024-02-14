@@ -21,7 +21,7 @@ public class GildedRose
             if (item.Name == "Aged Brie")
             {
                 IncreaseQuality(item);
-                item.SellIn -= 1;
+                DecreaseSellIn(item);
 
                 if (item.SellIn < 0)
                 {
@@ -45,7 +45,7 @@ public class GildedRose
                     IncreaseQuality(item);
                 }
 
-                item.SellIn -= 1;
+                DecreaseSellIn(item);
 
                 if (item.SellIn < 0)
                 {
@@ -56,14 +56,19 @@ public class GildedRose
             }
             
             DecreaseQuality(item);
-            
-            item.SellIn -= 1;
+
+            DecreaseSellIn(item);
 
             if (item.SellIn < 0)
             {
                 DecreaseQuality(item);
             }
         }
+    }
+
+    private static void DecreaseSellIn(Item item)
+    {
+        item.SellIn -= 1;
     }
 
     private static void DecreaseQuality(Item item)
