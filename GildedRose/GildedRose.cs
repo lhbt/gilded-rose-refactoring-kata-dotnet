@@ -24,7 +24,7 @@ public class GildedRose
             {
                 if (item.Quality > 0)
                 {
-                    item.Quality = item.Quality - 1;
+                    DecreaseQuality(item);
                 }
             }
             else
@@ -66,7 +66,7 @@ public class GildedRose
                         {
                             if (item.Name != "Sulfuras, Hand of Ragnaros")
                             {
-                                item.Quality = item.Quality - 1;
+                                DecreaseQuality(item);
                             }
                         }
                     }
@@ -86,8 +86,13 @@ public class GildedRose
         }
     }
 
+    private static void DecreaseQuality(Item item)
+    {
+        item.Quality -= 1;
+    }
+
     private static void IncreaseQuality(Item item)
     {
-        item.Quality = item.Quality + 1;
+        item.Quality += 1;
     }
 }
