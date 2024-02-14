@@ -55,12 +55,9 @@ public class GildedRose
                 continue;
             }
             
-            if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
-            {
-                DecreaseQuality(item);
-            }
-
-            item.SellIn = item.SellIn - 1;
+            DecreaseQuality(item);
+            
+            item.SellIn -= 1;
 
             if (item.SellIn < 0)
             {
