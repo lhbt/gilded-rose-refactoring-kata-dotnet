@@ -33,7 +33,6 @@ public class GildedRose
                     if (item.SellIn < 11)
                     {
                         IncreaseQuality(item);
-                     
                     }
 
                     if (item.SellIn < 6)
@@ -51,10 +50,7 @@ public class GildedRose
                 {
                     if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
                     {
-                        if (item.Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            DecreaseQuality(item);
-                        }
+                        DecreaseQuality(item);
                     }
                     else
                     {
