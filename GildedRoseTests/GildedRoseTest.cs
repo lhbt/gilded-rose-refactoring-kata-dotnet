@@ -39,6 +39,19 @@ public class GildedRoseTest
         Assert.That(item.Quality, Is.EqualTo(0));
     }
 
+    [TestCase("Aged Brie")]
+    [TestCase("Backstage passes to a TAFKAL80ETC concert")]
+    public void quality_of_aged_brie_and_backstage_passes_can_never_be_over_50(string itemName)
+    {
+        var item = new Item(itemName, 4, 50);
+        var inventory = new GildedRose.GildedRose(new List<Item> { item });
+
+        inventory.UpdateQuality();
+
+        Assert.That(item.SellIn, Is.EqualTo(3));
+        Assert.That(item.Quality, Is.EqualTo(50));
+    }
+
     [Test]
     public void quality_can_never_be_negative()
     {
