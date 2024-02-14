@@ -18,14 +18,22 @@ public class GildedRose
         {
             if (item.Name == "Sulfuras, Hand of Ragnaros") continue;
 
-            if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
-            {
-                DecreaseQuality(item);
-            }
-
             if (item.Name == "Aged Brie")
             {
                 IncreaseQuality(item);
+                item.SellIn = item.SellIn - 1;
+
+                if (item.SellIn < 0)
+                {
+                    IncreaseQuality(item);
+                }
+
+                continue;
+            }
+
+            if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+            {
+                DecreaseQuality(item);
             }
 
             if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
@@ -47,12 +55,6 @@ public class GildedRose
 
             if (item.SellIn < 0)
             {
-                if (item.Name == "Aged Brie")
-                {
-                    IncreaseQuality(item);
-                    continue;
-                }
-
                 if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
                     item.Quality = 0;
