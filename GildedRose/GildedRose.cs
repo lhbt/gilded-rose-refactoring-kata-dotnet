@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GildedRoseKata;
 
 namespace GildedRose;
+
 
 public class GildedRose
 {
@@ -18,7 +20,6 @@ public class GildedRose
         {
             if (item.Name == "Sulfuras, Hand of Ragnaros") continue;
 
-            // normal item path
             if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
             {
                 if (item.Quality > 0)
@@ -30,7 +31,7 @@ public class GildedRose
             {
                 if (item.Quality < 50)
                 {
-                    item.Quality = item.Quality + 1;
+                    IncreaseQuality(item);
 
                     if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                     {
@@ -38,7 +39,7 @@ public class GildedRose
                         {
                             if (item.Quality < 50)
                             {
-                                item.Quality = item.Quality + 1;
+                                IncreaseQuality(item);
                             }
                         }
 
@@ -46,7 +47,7 @@ public class GildedRose
                         {
                             if (item.Quality < 50)
                             {
-                                item.Quality = item.Quality + 1;
+                                IncreaseQuality(item);
                             }
                         }
                     }
@@ -78,10 +79,15 @@ public class GildedRose
                 {
                     if (item.Quality < 50)
                     {
-                        item.Quality = item.Quality + 1;
+                        IncreaseQuality(item);
                     }
                 }
             }
         }
+    }
+
+    private static void IncreaseQuality(Item item)
+    {
+        item.Quality = item.Quality + 1;
     }
 }
