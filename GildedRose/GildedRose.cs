@@ -29,27 +29,19 @@ public class GildedRose
             }
             else
             {
-                if (item.Quality < 50)
+                IncreaseQuality(item);
+
+                if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    IncreaseQuality(item);
-
-                    if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                    if (item.SellIn < 11)
                     {
-                        if (item.SellIn < 11)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                IncreaseQuality(item);
-                            }
-                        }
+                        IncreaseQuality(item);
+                     
+                    }
 
-                        if (item.SellIn < 6)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                IncreaseQuality(item);
-                            }
-                        }
+                    if (item.SellIn < 6)
+                    {
+                        IncreaseQuality(item);
                     }
                 }
             }
@@ -77,10 +69,7 @@ public class GildedRose
                 }
                 else
                 {
-                    if (item.Quality < 50)
-                    {
-                        IncreaseQuality(item);
-                    }
+                    IncreaseQuality(item);
                 }
             }
         }
@@ -93,6 +82,6 @@ public class GildedRose
 
     private static void IncreaseQuality(Item item)
     {
-        item.Quality += 1;
+        if (item.Quality < 50) item.Quality += 1;
     }
 }
