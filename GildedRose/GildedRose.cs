@@ -21,7 +21,7 @@ public class GildedRose
             if (item.Name == "Aged Brie")
             {
                 IncreaseQuality(item);
-                item.SellIn = item.SellIn - 1;
+                item.SellIn -= 1;
 
                 if (item.SellIn < 0)
                 {
@@ -31,15 +31,10 @@ public class GildedRose
                 continue;
             }
 
-            if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
-            {
-                DecreaseQuality(item);
-            }
-
             if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
             {
                 IncreaseQuality(item);
-                
+
                 if (item.SellIn < 11)
                 {
                     IncreaseQuality(item);
@@ -49,17 +44,26 @@ public class GildedRose
                 {
                     IncreaseQuality(item);
                 }
+
+                item.SellIn -= 1;
+
+                if (item.SellIn < 0)
+                {
+                    item.Quality = 0;
+                }
+
+                continue;
+            }
+            
+            if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+            {
+                DecreaseQuality(item);
             }
 
             item.SellIn = item.SellIn - 1;
 
             if (item.SellIn < 0)
             {
-                if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    item.Quality = 0;
-                }
-
                 DecreaseQuality(item);
             }
         }
