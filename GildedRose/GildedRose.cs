@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GildedRoseKata;
 
 namespace GildedRose;
-
 
 public class GildedRose
 {
@@ -24,21 +22,25 @@ public class GildedRose
             {
                 DecreaseQuality(item);
             }
-            else
+
+            if (item.Name == "Aged Brie")
+            {
+
+                IncreaseQuality(item);
+            }
+
+            if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
             {
                 IncreaseQuality(item);
-
-                if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                
+                if (item.SellIn < 11)
                 {
-                    if (item.SellIn < 11)
-                    {
-                        IncreaseQuality(item);
-                    }
+                    IncreaseQuality(item);
+                }
 
-                    if (item.SellIn < 6)
-                    {
-                        IncreaseQuality(item);
-                    }
+                if (item.SellIn < 6)
+                {
+                    IncreaseQuality(item);
                 }
             }
 
