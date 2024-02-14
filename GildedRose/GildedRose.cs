@@ -46,20 +46,19 @@ public class GildedRose
 
             if (item.SellIn < 0)
             {
-                if (item.Name != "Aged Brie")
+                if (item.Name == "Aged Brie")
                 {
-                    if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
-                    {
-                        DecreaseQuality(item);
-                    }
-                    else
-                    {
-                        item.Quality = item.Quality - item.Quality;
-                    }
+                    IncreaseQuality(item);
+                    continue;
+                }
+
+                if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                {
+                    DecreaseQuality(item);
                 }
                 else
                 {
-                    IncreaseQuality(item);
+                    item.Quality = item.Quality - item.Quality;
                 }
             }
         }
