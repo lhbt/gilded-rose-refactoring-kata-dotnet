@@ -7,6 +7,9 @@ public class GildedRose
 {
     private readonly IList<Item> _items;
 
+    private const int MaxQuality = 50;
+    private const int MinQuality = 0;
+
     public GildedRose(IList<Item> items)
     {
         _items = items;
@@ -73,11 +76,12 @@ public class GildedRose
 
     private static void DecreaseQuality(Item item)
     {
-       if (item.Quality > 0) item.Quality -= 1;
+        if (item.Quality > MinQuality)
+            item.Quality -= 1;
     }
 
     private static void IncreaseQuality(Item item)
     {
-        if (item.Quality < 50) item.Quality += 1;
+        if (item.Quality < MaxQuality) item.Quality += 1;
     }
 }
