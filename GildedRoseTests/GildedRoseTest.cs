@@ -92,4 +92,13 @@ public class GildedRoseTest
         Assert.That(updatedItem.SellIn, Is.EqualTo(expectedUpdatedSellIn));
         Assert.That(updatedItem.Quality, Is.EqualTo(expectedUpdatedQuality));
     }
+
+    [Test]
+    public void conjured_items_decrease_twice_as_fast_in_quality()
+    {
+        var updatedItem = SetupInventoryAndUpdateItemQuality("Conjured Mana Cake", 3, 6);
+
+        Assert.That(updatedItem.SellIn, Is.EqualTo(2));
+        Assert.That(updatedItem.Quality, Is.EqualTo(4));
+    }
 }

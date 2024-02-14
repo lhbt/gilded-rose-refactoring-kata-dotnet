@@ -53,6 +53,8 @@ public class GildedRose
             
             DecreaseQuality(item);
 
+            if (item.Name == "Conjured Mana Cake") DecreaseQuality(item);
+
             if (ItemIsPastSellByDate(item)) DecreaseQuality(item);
         }
     }
