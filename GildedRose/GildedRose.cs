@@ -23,7 +23,7 @@ public class GildedRose
             {
                 if (item.Quality > 0)
                 {
-                        item.Quality = item.Quality - 1;
+                    item.Quality = item.Quality - 1;
                 }
             }
             else
