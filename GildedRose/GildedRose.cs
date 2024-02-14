@@ -27,7 +27,7 @@ public class GildedRose
             {
                 IncreaseQuality(item);
 
-                if (item.SellIn < 0) IncreaseQuality(item);
+                if (ItemIsPastSellByDate(item)) IncreaseQuality(item);
 
                 continue;
             }
@@ -46,15 +46,20 @@ public class GildedRose
                     IncreaseQuality(item);
                 }
 
-                if (item.SellIn < 0) item.Quality = 0;
+                if (ItemIsPastSellByDate(item)) item.Quality = MinQuality;
 
                 continue;
             }
             
             DecreaseQuality(item);
 
-            if (item.SellIn < 0) DecreaseQuality(item);
+            if (ItemIsPastSellByDate(item)) DecreaseQuality(item);
         }
+    }
+
+    private static bool ItemIsPastSellByDate(Item item)
+    {
+        return item.SellIn < 0;
     }
 
     private static void DecreaseSellIn(Item item)
