@@ -21,10 +21,11 @@ public class GildedRose
         {
             if (item.Name == "Sulfuras, Hand of Ragnaros") continue;
 
+            DecreaseSellIn(item);
+
             if (item.Name == "Aged Brie")
             {
                 IncreaseQuality(item);
-                DecreaseSellIn(item);
 
                 if (item.SellIn < 0) IncreaseQuality(item);
 
@@ -33,8 +34,6 @@ public class GildedRose
 
             if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
             {
-                DecreaseSellIn(item);
-                
                 IncreaseQuality(item);
 
                 if (item.SellIn < 10)
@@ -53,7 +52,6 @@ public class GildedRose
             }
             
             DecreaseQuality(item);
-            DecreaseSellIn(item);
 
             if (item.SellIn < 0) DecreaseQuality(item);
         }
@@ -69,8 +67,8 @@ public class GildedRose
         if (item.Quality > MinQuality) item.Quality -= 1;
     }
 
-    private static void IncreaseQuality(Item item, int value = 1)
+    private static void IncreaseQuality(Item item)
     {
-        if (item.Quality < MaxQuality) item.Quality += value;
+        if (item.Quality < MaxQuality) item.Quality += 1;
     }
 }
